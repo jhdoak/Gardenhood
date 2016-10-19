@@ -11,9 +11,9 @@
   <%= form_tag(tools_path, :method => "get", id: "search-form") do %>
     <%= text_field_tag :search, params[:search], placeholder: "Search for tools" %>
     <%= button_tag "Search", class: "success button search-button", id: "gh-success" %>
-  <% end %>
 
     <%= link_to 'Reset', tools_path, class: "success button search-button reset-button", id: "gh-success" %>
+  <% end %>
 </div>
 
 
@@ -22,7 +22,12 @@
 
   <% @tools.each do |tool| %>
 
-  <div class="accordion card" data-accordion data-allow-all-closed="true">
+  <% if tool.gardener == current_gardener %>
+    <div class="accordion card owner-card" data-accordion data-allow-all-closed="true">
+  <% else %>
+    <div class="accordion card" data-accordion data-allow-all-closed="true">
+  <% end %>
+
     <div class="accordion-item" data-accordion-item>
       <a href="" class="accordion-title">
         <div>
